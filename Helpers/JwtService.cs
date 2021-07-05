@@ -9,15 +9,14 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Api.Helpers
 {
-    // This is a helper class for the jwt
+    // service for the jwt
     public class JwtService
     {
-        private string securitykey = "this is a very secure key"; // a key that will be used for the encryption of the jwt
+        private string securitykey = "this is a very secure key"; // a key that will be used for encryption
         public string Generate(int id)
         {
-            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securitykey)); // making a symmetric security key using the key
-            var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature); // creating the credentials of the jwt,
-            // using sha256 algo since it is most commonly used form of encryption
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securitykey)); // making a symmetric key
+            var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature); //using sha 256 algo for encryption
             var header = new JwtHeader(credentials); // creating the header of the token using credentials
 
             var payload = new JwtPayload(id.ToString(), null, null, null, DateTime.Today.AddDays(1)); //setting the issuer and expiration to the payload of the token

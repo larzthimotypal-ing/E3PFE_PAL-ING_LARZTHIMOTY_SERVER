@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Api.Dtos
 {
-    // creating the data transfer objects for the log-in credentials
+    // data transfer objects are used to avoid passing directly to the model
     public class LoginDto
     {
         public string Password { get; set; }
