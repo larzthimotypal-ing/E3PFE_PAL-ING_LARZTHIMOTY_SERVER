@@ -9,14 +9,14 @@ namespace Api.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserContext _context; //to be able to use the db context 
+        private readonly UserContext _context; //the dbcontex allows us to connect to the database
 
-        public UserRepository(UserContext context) // a constructor
+        public UserRepository(UserContext context) 
         {
             _context = context; 
         }
 
-        public AppUser Create( AppUser appUser) // a method to add the user to the database using the dbcontext
+        public AppUser Create( AppUser appUser) // using Add method to add a entry to the database
         {
             _context.AppUsers.Add(appUser);
             appUser.Id = _context.SaveChanges();
@@ -24,12 +24,12 @@ namespace Api.Data
             return appUser;
         }
 
-        public AppUser GetByEmail(string email) // a method to find and get the user by email using the dbcontext
+        public AppUser GetByEmail(string email) // using First or Default method to find a data using email to the database
         {
             return _context.AppUsers.FirstOrDefault(u => u.Email == email);
         }
 
-        public AppUser GetById(int id) // a method to find and get the user by id using the dbcontext
+        public AppUser GetById(int id) // using First or Default method to find a data using id to the database
         {
             return _context.AppUsers.FirstOrDefault(u => u.Id == id);
         }

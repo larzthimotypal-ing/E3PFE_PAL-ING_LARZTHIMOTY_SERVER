@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 
 namespace Api.Dtos
 {
-    // creating the data transfer objects for the register data
+    // data transfer objects are used to avoid passing directly to the model
     public class RegisterDto
     {
         public string Name { set; get; }
         public string Email { set; get; }
         public string Password { set; get; }
+        public string Section { set; get; }
+        public string Hobby { set; get; }
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Data
 {
-    public class UserContext : DbContext //dependency injection of the dbcontext
+    public class UserContext : DbContext //dependency injection
     {
         public UserContext(DbContextOptions<UserContext> options) : base(options)
         {
@@ -16,7 +16,7 @@ namespace Api.Data
 
         public DbSet<AppUser> AppUsers { set; get; }
 
-        protected override void OnModelCreating(ModelBuilder  modelBuilder) // this is used to make it so that the email must be unique 
+        protected override void OnModelCreating(ModelBuilder  modelBuilder) // using modelbuilder to make the email a unique data
         {
             modelBuilder.Entity<AppUser>(
                 entity => { entity.HasIndex(e => e.Email).IsUnique(); });
